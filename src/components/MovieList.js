@@ -7,25 +7,20 @@ function MovieList(props) {
     return (
 
         <div id="list-container">
-            <table id="list-table">
-                <tr>
-                    <th>Movie Title</th>
-                    <th>Rate</th>
-                    <th>description</th>
-                </tr>
+            <div id="list">
                 {props.array.map(e =>
-                    <tr>
-                        <td>{e[0]}</td>
-                        <td>{e[1]}</td>
-                        <td>{e[2]}</td>
-                    </tr>
-                    )}
-                <tr>
-                    <th>Movie Title</th>
-                    <th>Rate</th>
-                    <th>description</th>
-                </tr>
-            </table>
+                    <div className="card-container" style={{ backgroundImage: "url(" + e[2] + ")" }}>
+                        <div className="card">
+                            {Array(e[1]*1).fill("").map(x=><span className="fa fa-star checked" />)}
+
+                            <h3>{e[0]}</h3>
+                            <h4>{e[1]}</h4>
+                            <p>{e[3]}</p>
+                        </div>
+                    </div>
+                )}
+
+            </div>
         </div>
     );
 

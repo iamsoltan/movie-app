@@ -97,6 +97,8 @@ function Reglog() {
         this.email = "";
         this.password = "";
         this.islogged = false;
+        this.adminUser = "user";
+        this.fav = [];
 
         this.login = function () {
             this.islogged = true;
@@ -154,6 +156,7 @@ function Reglog() {
                     window[emailRegister] = new User();
                     window[emailRegister].email = emailRegister;
                     window[emailRegister].password = passwordRegister;
+                    if (window[emailRegister].email == "kmkhalilo@gmail.com") { window[emailRegister].adminUser = "admin" };
                     users.push(emailRegister);
                     usersObjects.push(window[emailRegister]);
 

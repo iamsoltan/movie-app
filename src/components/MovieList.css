@@ -1,43 +1,40 @@
-
-#list-container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#list-container {
+  width: 100%;
+  background-color: darkgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+#list {
+  max-width: 950px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-container{
+  background-size: cover;
+  background-position: center;
+}
+.card {
+  color: white;;
+  width: 400px;
+  height: 350px;
+  overflow: hidden;
 
+  background: rgba(0,0,0,.7);
+  position: relative;
+}
 
-#list-table {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    margin: 0em;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid #888;
-  }
+.card p {
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  overflow: hidden;
+}
+.checked {
+  color: orange;
+}
 
-  #list-table td:nth-child(3){
-    max-width: 500px;
-  }
-  
-  #list-table td,
-  #list-table th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  #list-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  #list-table tr:hover {
-    background-color: #ddd;
-  }
-  
-  #list-table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: rgb(74, 97, 173);
-    color: white;
-  }

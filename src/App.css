@@ -1,8 +1,14 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
 .App {
   text-align: center;
-
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
-
+/*
 body{
   background-image: url(./components/film-reel-movies-wallpaper-preview.jpg);
+  background-color: darkgreen;
 }
+*{
+  border: 0.5px solid red;
+}*/
