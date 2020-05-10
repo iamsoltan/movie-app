@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MovieList from "./components/MovieList"
 import NavBar from "./components/NavBar"
+import Editor from "./components/Editor"
 
 class App extends Component {
   movieList = [
@@ -15,6 +16,7 @@ class App extends Component {
         <NavBar />
 
         <MovieList array={this.movieList} />
+        <Editor e={this.movieList[0]}/>
       </div>
     );
   }

@@ -8,20 +8,20 @@
 
 #list {
   max-width: 950px;
-  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .card-container {
+  margin: 10px;
   background-size: cover;
   background-position: center;
 }
 
 .card {
   color: white;
-  ;
+
   width: 400px;
   height: 350px;
   overflow: hidden;
