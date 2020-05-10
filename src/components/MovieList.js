@@ -11,11 +11,13 @@ function MovieList(props) {
                 {props.array.map(e =>
                     <div className="card-container" style={{ backgroundImage: "url(" + e[2] + ")" }}>
                         <div className="card">
-                            {Array(e[1]*1).fill("").map(x=><span className="fa fa-star checked" />)}
-
-                            <h3>{e[0]}</h3>
+                            <span className="fa fa-heart heart-checked " title="Add to favourit"/>
+                            <div className="star-card" title="Rating based on our website's users">{Array(e[1]*1).fill("").map(x=><span className="fa fa-star star-checked" />)}</div>
+                            <br/><br/>
+                            <h2>{e[0]}</h2>
                             <h4>{e[1]}</h4>
                             <p>{e[3]}</p>
+                            <span className="fa fa-cog cog-checked " title="Edit the movie"/>
                         </div>
                     </div>
                 )}

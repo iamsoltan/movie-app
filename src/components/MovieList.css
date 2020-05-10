@@ -13,17 +13,19 @@
   justify-content: center;
   align-items: center;
 }
-.card-container{
+
+.card-container {
   background-size: cover;
   background-position: center;
 }
+
 .card {
-  color: white;;
+  color: white;
+  ;
   width: 400px;
   height: 350px;
   overflow: hidden;
-
-  background: rgba(0,0,0,.7);
+  background: rgba(0, 0, 0, .7);
   position: relative;
 }
 
@@ -34,7 +36,42 @@
   -webkit-line-clamp: 7;
   overflow: hidden;
 }
-.checked {
+
+.star-card {
+  padding: 10px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  cursor: pointer;
+  
+}
+
+.star-checked {
   color: orange;
 }
 
+.fa-heart {
+  padding: 10px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.heart-checked {
+  color: red;
+}
+
+.fa-cog {
+  padding: 10px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.cog-checked {
+  color: white;
+}

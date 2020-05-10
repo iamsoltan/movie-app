@@ -6,7 +6,6 @@ import Search from "./Search";
 const NavBar = () => {
     return (
         <div>
-        <h1>nav bar </h1>
         <Reglog />
         <Search />
         </div>
