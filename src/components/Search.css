@@ -14,8 +14,10 @@ input[type=search] {
 }
 
 
-.star-menu>span:hover:before, .star-menu>span:hover~span:before {
-    color: orange;
-    cursor: pointer;
-
+.star-menu span:hover, .star-menu span:hover ~ span {
+  color: orange;
+  cursor: pointer;
+}
+.star-menu span:active {
+  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
 }

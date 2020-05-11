@@ -24,7 +24,7 @@ class App extends Component {
   };
   filtered=(x)=>{
     let patt = new RegExp(x, 'gi');
-    this.setState({ movieList: [...this.movieListOriginal.filter(e=>e[0].match(patt))] },()=>console.log(this.state.movieList));
+    this.setState({ movieList: [...this.movieListOriginal.filter((e)=> e[0].match(patt)  && e[1]>"1" )] },()=>console.log(this.state.movieList));
   };
 
 
