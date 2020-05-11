@@ -25,7 +25,7 @@ function Editor(props) {
                     <td><textarea rows="5" cols="100" defaultValue={props.e[3]} /></td>
                 </tr>
             </table>
-            <div class="cancel-submit">
+            <div className="cancel-submit">
                 <button id="cancel">Cancel</button>
                 <button id="submit" onclick="">Submit</button>
                 <button id="delete" onclick="">Delete</button>

@@ -3,11 +3,11 @@ import './NavBar.css';
 import Reglog from "./reglog";
 import Search from "./Search";
 
-const NavBar = () => {
+const NavBar = (props) => {
     return (
         <div>
         <Reglog />
-        <Search />
+        <Search onChange={props.onChange}/>
         </div>
         );
 

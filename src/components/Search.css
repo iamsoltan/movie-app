@@ -1,13 +1,21 @@
-input[type=search] { 	
+input[type=search] {
     padding: 10px;
-    margin : 10px;
+    margin: 10px;
     border: 2px solid darkgray;
-
-    font-size: 25px;       
+    font-size: 25px;
 }
 
 .star-menu {
     display: inline-block;
     padding: 10px;
     font-size: 30px;
-  }
+    direction: rtl;
+
+}
+
+
+.star-menu>span:hover:before, .star-menu>span:hover~span:before {
+    color: orange;
+    cursor: pointer;
+
+}
