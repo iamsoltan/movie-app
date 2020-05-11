@@ -10,49 +10,39 @@ class App extends Component {
     this.state = {
       movieList: [
         ["Behind Enemy Lines", "5", "https://resizing.flixster.com/rr-PoYj5Jk4QBmQu75ZgrWFzqV8=/206x305/v1.bTsxMTE3Njc3MztqOzE4NDg5OzEyMDA7ODAwOzEyMDA", "Behind Enemy Lines is a series of war films beginning with Behind Enemy Lines in 2001, followed by films in 2006, 2009 and 2014. All four films feature the United States Navy."],
+        ["Black Hawk Down", "4", "https://images-na.ssl-images-amazon.com/images/I/81+PAHSNsgL._RI_.jpg", "Captain Mike Steele leads a team of nearly 100 US Army Rangers who travel to the capital city of Mogadishu to nab the top two lieutenants of a Somali warlord."],
+        ["The Transporter", "3", "https://i.pinimg.com/originals/27/2d/64/272d640a0166155f7b23485011da16b9.jpg", "Ex-Special Forces operator Frank Martin (Jason Statham) lives what seems to be a quiet life along the French Mediterranean, hiring himself out as a mercenary transporter who moves goods - human or otherwise - from one place to another. No questions asked. Dangerous complications ensue when he is hired to kidnap the feisty daughter of a lethal Chinese crime lord who's smuggling his fellow countrymen into France."]
       ],
-
-    };
-
-    this.movieListOriginal = [
-      ["Behind Enemy Lines", "5", "https://resizing.flixster.com/rr-PoYj5Jk4QBmQu75ZgrWFzqV8=/206x305/v1.bTsxMTE3Njc3MztqOzE4NDg5OzEyMDA7ODAwOzEyMDA", "Behind Enemy Lines is a series of war films beginning with Behind Enemy Lines in 2001, followed by films in 2006, 2009 and 2014. All four films feature the United States Navy."],
-      ["Black Hawk Down", "4", "https://images-na.ssl-images-amazon.com/images/I/81+PAHSNsgL._RI_.jpg", "Captain Mike Steele leads a team of nearly 100 US Army Rangers who travel to the capital city of Mogadishu to nab the top two lieutenants of a Somali warlord."],
-      ["The Transporter", "3", "https://i.pinimg.com/originals/27/2d/64/272d640a0166155f7b23485011da16b9.jpg", "Ex-Special Forces operator Frank Martin (Jason Statham) lives what seems to be a quiet life along the French Mediterranean, hiring himself out as a mercenary transporter who moves goods - human or otherwise - from one place to another. No questions asked. Dangerous complications ensue when he is hired to kidnap the feisty daughter of a lethal Chinese crime lord who's smuggling his fellow countrymen into France."]
-    ];
-    this.rate = "1";
-    this.keyword = "";
-  }
+      rate : 1,
+      keyword : "",
+    }};
 
 
-  filtered=(x,r)=>{
-    let patt = new RegExp(x, 'gi');
-    let rate = r;
-    console.log("keyword rate : ",x,"filter rate : ", r);
-    
-    this.setState({ movieList: [...this.movieListOriginal.filter((e)=> e[0].match(patt)  && e[1]*1 >= rate)] },()=>console.log("cureent movie list  : ",this.state.movieList));
-  };
+
   getKeyword=(k)=>{
-    this.keyword = k;
-    console.log('keyword : ',k);
-    this.filtered(this.keyword,this.rate);
+    this.setState({ keyword : k });
   }
   getRate=(r)=>{
-    this.rate = r;
-    console.log('rate : ',r);
-    this.filtered(this.keyword,this.rate);
+    this.setState({ rate : r });
   }
-
-  componentDidMount() {
-    this.setState({ movieList: [...this.movieListOriginal] });
+  filtered=(m,k,r)=>{
+    let patt = new RegExp(k, 'gi');
+    let rate = r;
+    console.log("keyword rate : ",k,"filter rate : ", r); 
+    return  m.filter((e)=> e[0].match(patt)  && e[1]*1 >= rate) ;
   };
+
 
  
   render() {
+    
     return (
       <div className="App">
         <NavBar onChange={this.getKeyword} onClick={this.getRate}  />
 
-        <MovieList array={this.state.movieList} />
+        <MovieList array={this.filtered(this.state.movieList,this.state.keyword,this.state.rate)} />
+
+
        {/* <Editor e={this.state.movieList[0]} />*/}
       </div>
     );
