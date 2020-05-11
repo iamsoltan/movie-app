@@ -2,6 +2,7 @@
   width: 100%;
   background-color: darkgrey;
   display: flex;
+
   justify-content: center;
   align-items: center;
 }
@@ -9,6 +10,7 @@
 #list {
   max-width: 950px;
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
 }
@@ -22,8 +24,8 @@
 .card {
   color: white;
 
-  width: 400px;
-  height: 350px;
+  width: 290px;
+  height: 300px;
   overflow: hidden;
   background: rgba(0, 0, 0, .7);
   position: relative;

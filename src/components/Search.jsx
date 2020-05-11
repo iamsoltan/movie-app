@@ -32,7 +32,7 @@ const Search = (props) => {
         <React.Fragment>
             <input type="search" id="mySearch" onChange={a => { props.onChange(a.target.value) }} placeholder="Find a movie.." title="Find a movie" />
             <div className="star-menu" title="Search by rating">{Array(4).fill("").map(x => <span className="fa fa-star" onClick={e => rate(e)} />)}<span className="fa fa-star star-checked" onClick={e => rate(e)} /></div>
-            <button onClick={() => { reset() }}>Reset</button>
+            <button className="resetSearch" onClick={() => { reset() }}>Reset</button>
         </React.Fragment>
     );
 

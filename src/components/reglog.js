@@ -161,7 +161,6 @@ function Reglog() {
                     usersObjects.push(window[emailRegister]);
 
                     alert("succussfull registration !  you may now log in !")
-                    document.getElementById("content").innerHTML = JSON.stringify(usersObjects, null, 4);
                     closeFormRegister();
                 }
             }
@@ -218,7 +217,7 @@ function Reglog() {
 
 
     return (
-        <div>
+        <React.Fragment>
             <div className="btn-container">
                 <button className="register-button" id="registerbtn" onClick={openFormRegister}>register</button>
                 <button className="logout-button" id="logoutbtn" onClick={logout} >{"logout"}{NAME}</button>
@@ -256,8 +255,8 @@ function Reglog() {
                     </form>
                 </div>
             </div>
-            <p id="content" ></p>
-        </div>
+            
+        </React.Fragment>
     );
 };
 
