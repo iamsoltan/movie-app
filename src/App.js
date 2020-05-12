@@ -32,6 +32,24 @@ class App extends Component {
     return  m.filter((e)=> e[0].match(patt)  && e[1]*1 >= rate) ;
   };
 
+  addMovie=(x)=>{
+    if(x[1] > 5){ x[1]=5}else if ( x[1] < 1 ){ x[1]=1 };
+    console.log("new list item in app : ",x);
+    
+    this.setState({ movieList : [...this.state.movieList,x] });
+  }
+  deleteMovie=(i)=>{
+    let y = [...this.state.movieList];
+    y.splice(i, 1);
+    this.setState({ movieList : [...y] });
+  }
+  updateMovie=(movie,i)=>{
+    let y = [...this.state.movieList];
+    console.log(y);
+    
+    y.splice(i,1,movie);
+    this.setState({ movieList : [...y] });
+  }
 
  
   render() {
@@ -43,10 +61,23 @@ class App extends Component {
         <MovieList array={this.filtered(this.state.movieList,this.state.keyword,this.state.rate)} />
 
 
-       {/* <Editor e={this.state.movieList[0]} />*/}
+       {/* <Editor e={this.state.movieList[0]} submitList={this.submitList} deleteList={this.deleteList} />*/}
+       <Editor  addMovie={this.addMovie}  mode="add" />
+       <Editor e={this.state.movieList} iDelete={0}  updateMovie={this.updateMovie} deleteMovie={this.deleteMovie} mode="edit" />
+
       </div>
     );
   }
 }
 
 export default App;
+
+
+
+/*
+ * rise this data with events "or with data on change (state)"
+ * reglog --> app:
+ * user object
+ * read and write mode
+ * 
+ */
