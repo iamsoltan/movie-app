@@ -3,6 +3,7 @@ import './App.css';
 import MovieList from "./components/MovieList"
 import NavBar from "./components/NavBar"
 import Editor from "./components/Editor"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -13,59 +14,63 @@ class App extends Component {
         ["Black Hawk Down", "4", "https://images-na.ssl-images-amazon.com/images/I/81+PAHSNsgL._RI_.jpg", "Captain Mike Steele leads a team of nearly 100 US Army Rangers who travel to the capital city of Mogadishu to nab the top two lieutenants of a Somali warlord."],
         ["The Transporter", "3", "https://i.pinimg.com/originals/27/2d/64/272d640a0166155f7b23485011da16b9.jpg", "Ex-Special Forces operator Frank Martin (Jason Statham) lives what seems to be a quiet life along the French Mediterranean, hiring himself out as a mercenary transporter who moves goods - human or otherwise - from one place to another. No questions asked. Dangerous complications ensue when he is hired to kidnap the feisty daughter of a lethal Chinese crime lord who's smuggling his fellow countrymen into France."]
       ],
-      rate : 1,
-      keyword : "",
-    }};
-
-
-
-  getKeyword=(k)=>{
-    this.setState({ keyword : k });
-  }
-  getRate=(r)=>{
-    this.setState({ rate : r });
-  }
-  filtered=(m,k,r)=>{
-    let patt = new RegExp(k, 'gi');
-    let rate = r;
-    console.log("keyword rate : ",k,"filter rate : ", r); 
-    return  m.filter((e)=> e[0].match(patt)  && e[1]*1 >= rate) ;
+      rate: 1,
+      keyword: "",
+    }
   };
 
-  addMovie=(x)=>{
-    if(x[1] > 5){ x[1]=5}else if ( x[1] < 1 ){ x[1]=1 };
-    console.log("new list item in app : ",x);
-    
-    this.setState({ movieList : [...this.state.movieList,x] });
+
+
+  getKeyword = (k) => {
+    this.setState({ keyword: k });
   }
-  deleteMovie=(i)=>{
+  getRate = (r) => {
+    this.setState({ rate: r });
+  }
+  filtered = (m, k, r) => {
+    let patt = new RegExp(k, 'gi');
+    let rate = r;
+    console.log("keyword rate : ", k, "filter rate : ", r);
+    return m.filter((e) => e[0].match(patt) && e[1] * 1 >= rate);
+  };
+
+  addMovie = (x) => {
+    if (x[1] > 5) { x[1] = 5 } else if (x[1] < 1) { x[1] = 1 };
+    console.log("new list item in app : ", x);
+
+    this.setState({ movieList: [...this.state.movieList, x] });
+  }
+  deleteMovie = (i) => {
     let y = [...this.state.movieList];
     y.splice(i, 1);
-    this.setState({ movieList : [...y] });
+    this.setState({ movieList: [...y] });
   }
-  updateMovie=(movie,i)=>{
+  updateMovie = (movie, i) => {
     let y = [...this.state.movieList];
     console.log(y);
-    
-    y.splice(i,1,movie);
-    this.setState({ movieList : [...y] });
+
+    y.splice(i, 1, movie);
+    this.setState({ movieList: [...y] });
   }
 
- 
+
   render() {
-    
+
     return (
-      <div className="App">
-        <NavBar onChange={this.getKeyword} onClick={this.getRate}  />
+      <Router>
 
-        <MovieList array={this.filtered(this.state.movieList,this.state.keyword,this.state.rate)} />
+        <div className="App">
+          <NavBar onChange={this.getKeyword} onClick={this.getRate} />
 
+          <Switch>
+            <Route path="/" exact component={<MovieList array={this.filtered(this.state.movieList, this.state.keyword, this.state.rate)} />} />
+            <Route path="/a" component={<Editor addMovie={this.addMovie} mode="add" />} />
+            <Route path="/e" component={<Editor e={this.state.movieList} iDelete={0} updateMovie={this.updateMovie} deleteMovie={this.deleteMovie} mode="edit" />} />
+          </Switch>
 
-       {/* <Editor e={this.state.movieList[0]} submitList={this.submitList} deleteList={this.deleteList} />*/}
-       <Editor  addMovie={this.addMovie}  mode="add" />
-       <Editor e={this.state.movieList} iDelete={0}  updateMovie={this.updateMovie} deleteMovie={this.deleteMovie} mode="edit" />
+        </div>
 
-      </div>
+      </Router>
     );
   }
 }
@@ -74,10 +79,15 @@ export default App;
 
 
 
+{/* <Editor e={this.state.movieList[0]} submitList={this.submitList} deleteList={this.deleteList} />
+                      <Route path="/" component={} />
+          */}
+
+
 /*
  * rise this data with events "or with data on change (state)"
  * reglog --> app:
  * user object
  * read and write mode
- * 
+ *
  */
