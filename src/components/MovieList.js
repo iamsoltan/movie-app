@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './MovieList.css';
+import { NavLink } from 'react-router-dom';
 
 function MovieList(props) {
 
 
     return (
-
         <div id="list-container">
             <div id="list">
                 {props.array.map((e,i) =>
@@ -17,7 +17,7 @@ function MovieList(props) {
                             <h2>{e[0]}</h2>
                             <h4>{e[1]}</h4>
                             <p>{e[3]}</p>
-                            <span className="fa fa-cog cog-checked " title="Edit the movie"/>
+                            <NavLink to={{pathname: `/edit/${i}`}}><span className="fa fa-cog cog-checked " title="Edit the movie"/></NavLink>
                         </div>
                     </div>
                 )}

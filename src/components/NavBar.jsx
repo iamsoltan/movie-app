@@ -6,6 +6,7 @@ import Search from "./Search";
 const NavBar = (props) => {
     return (
         <div className="navBar-container">
+            
         <Reglog />
         <Search onChange={props.onChange} onClick={props.onClick}/>
         </div>

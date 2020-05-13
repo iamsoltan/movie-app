@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import './Editor.css';
+import { NavLink,useParams } from 'react-router-dom';
 
 function Editor(props) {
+    let { iDelete } = useParams();
     const getDataEditor = () => {
         return [document.getElementById("list-table-title").value, document.getElementById("list-table-rate").value, document.getElementById("list-table-poster").value, document.getElementById("list-table-description").value]
     }
     const getDataAdder = () => {
         return [document.getElementById("list-table-titleAdder").value, document.getElementById("list-table-rateAdder").value, document.getElementById("list-table-posterAdder").value, document.getElementById("list-table-descriptionAdder").value]
     }
-    const { iDelete } = props;
+
+
 
     if (props.mode === "add") {
         return (
@@ -33,8 +36,8 @@ function Editor(props) {
                     </tr>
                 </table>
                 <div className="cancel-submit">
-                    <button id="cancel">Cancel</button>
-                    <button id="submit" onClick={() => { props.addMovie(getDataEditor()) }}>Add</button>
+                    <NavLink exact to="/"><button id="cancel">Cancel</button></NavLink>
+                    <NavLink exact to="/"><button id="submit" onClick={() => { props.addMovie(getDataEditor()) }}>Add</button></NavLink>
                 </div>
             </div>
         )
@@ -61,9 +64,9 @@ function Editor(props) {
                     </tr>
                 </table>
                 <div className="cancel-submit">
-                    <button id="cancel">Cancel</button>
-                    <button id="submit" onClick={() => { props.updateMovie(getDataAdder(), iDelete) }}>Update</button>
-                    <button id="delete" onClick={() => { props.deleteMovie(iDelete) }}>Delete</button>
+                    <NavLink exact to="/"><button id="cancel">Cancel</button></NavLink>
+                    <NavLink exact to="/"><button id="submit" onClick={() => { props.updateMovie(getDataAdder(), iDelete) }}>Update</button></NavLink>
+                    <NavLink exact to="/"><button id="delete" onClick={() => { props.deleteMovie(iDelete) }}>Delete</button></NavLink>
                 </div>
             </div>
         )
