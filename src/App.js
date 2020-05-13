@@ -74,7 +74,7 @@ class App extends Component {
         let ButtonAdder;
         let ButtonFav;
         if (this.state.user.adminUser === "admin") { ButtonAdder = <NavLink to="/add"><button className="add-movie">Add a Movie</button></NavLink> };
-        if (this.state.user !== "") { ButtonFav = <NavLink to="/favourit"><button className="add-movie">Favourit Movies</button></NavLink> };
+        if (this.state.user !== "") { ButtonFav = <NavLink to="/Favorite"><button className="add-movie">Favorite Movies</button></NavLink> };
         return (
             <Router>
 
@@ -87,7 +87,7 @@ class App extends Component {
 
                     <Switch>
                         <Route path="/" exact component={() => <MovieList user={this.state.user} addFav={this.addFav} array={this.filtered(this.state.movieList, this.state.keyword, this.state.rate)} />} />
-                        <Route path="/favourit" component={() => <MovieList user={this.state.user} array={this.filtered(this.state.user.fav, this.state.keyword, this.state.rate)} />} />
+                        <Route path="/Favorite" component={() => <MovieList user={this.state.user} array={this.filtered(this.state.user.fav, this.state.keyword, this.state.rate)} />} />
                         <Route path="/add" component={() => <Editor addMovie={this.addMovie} mode="add" />} />
                         <Route path="/edit/:iDelete" component={() => <Editor e={this.state.movieList} updateMovie={this.updateMovie} deleteMovie={this.deleteMovie} mode="edit" />} />
                     </Switch>
@@ -113,5 +113,5 @@ export default App;
  * reglog --> app:
  * user object
  * read and write mode
- *                    <NavLink to="/favourit"><button className="add-movie">Favourit Movies</button></NavLink>
+ *                    <NavLink to="/Favorite"><button className="add-movie">Favorite Movies</button></NavLink>
  */
