@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import "./Reglog.css";
+import { NavLink } from 'react-router-dom';
 
 
-function Reglog() {
+function Reglog(props) {
 
     React.useEffect(() => {
         reglogform = document.getElementById("reglogform");
@@ -131,6 +132,7 @@ function Reglog() {
 
                 console.log("window[emaillogin].email : ", NAME, logoutbtn.innerHTML = "hhh");
                 logoutbtn.innerHTML = "Logout from  " + NAME;
+                props.getUser(window[emaillogin]);
 
             } else {
                 alert("right Email But wrong password!")
@@ -138,6 +140,7 @@ function Reglog() {
         } else {
             alert("whether wrong Email or not registred , register first please !")
         }
+        
     }
 
     /*------------------------------Register function--------------------------------------------- */
@@ -179,6 +182,7 @@ function Reglog() {
         hide(logoutbtn);
         show(regbtn);
         show(logbtn);
+        props.getUser("");
     }
 
     /*--------------------------------control Email with regex------------------------------------------- */
@@ -220,7 +224,7 @@ function Reglog() {
         <React.Fragment>
             <div className="btn-container">
                 <button className="register-button" id="registerbtn" onClick={openFormRegister}>register</button>
-                <button className="logout-button" id="logoutbtn" onClick={logout} >{"logout"}{NAME}</button>
+                <NavLink to="/"><button className="logout-button" id="logoutbtn" onClick={logout} >{"logout"}{NAME}</button></NavLink>
                 <button className="open-button" id="loginbtn" onClick={openFormLogin}>login</button>
             </div>
             <div id="reglogform">

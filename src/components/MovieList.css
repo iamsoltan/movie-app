@@ -31,11 +31,12 @@
 }
 
 .card p {
-  display: block;
+  padding : 5px;
+  /*display: block;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 7;
-  overflow: hidden;
+  overflow: hidden;*/
 }
 
 .star-card {

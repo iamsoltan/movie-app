@@ -7,7 +7,7 @@ const NavBar = (props) => {
     return (
         <div className="navBar-container">
             
-        <Reglog />
+        <Reglog getUser={props.getUser}/>
         <Search onChange={props.onChange} onClick={props.onClick}/>
         </div>
         );
