@@ -4,67 +4,70 @@ import { NavLink } from 'react-router-dom';
 
 function MovieList(props) {
 
-    if (props.user.adminUser ==="admin"){
-    return (
-        <div id="list-container">
-            <div id="list">
-                {props.array.map((e,i) =>
-                    <div key={i} className="card-container" style={{ backgroundImage: "url(" + e[2] + ")" }}>
-                        <div className="card">
-                            <span  onClick={()=>props.addFav(e)} className="fa fa-heart heart-checked " title="Add to favourit"/>
-                            <div className="star-card" title="Rating based on our website's users">{Array(e[1]*1).fill("").map((x,i)=><span key={i} className="fa fa-star star-checked" />)}</div>
-                            <br/><br/>
-                            <h2>{e[0]}</h2>
-                            <h4>{e[1]}</h4>
-                            <p>{e[3]}</p>
-                            <NavLink to={{pathname: `/edit/${i}`}}><span className="fa fa-cog cog-checked " title="Edit the movie"/></NavLink>
-                        </div>
-                    </div>
-                )}
-
-            </div>
-        </div>
-    )}else
-    if (props.user.adminUser ==="user"){
+    if (props.user === "") {
         return (
             <div id="list-container">
                 <div id="list">
-                    {props.array.map((e,i) =>
+                    {props.array.map((e, i) =>
                         <div key={i} className="card-container" style={{ backgroundImage: "url(" + e[2] + ")" }}>
                             <div className="card">
-                                <span  onClick={()=>props.addFav(e)} className="fa fa-heart heart-checked " title="Add to favourit"/>
-                                <div className="star-card" title="Rating based on our website's users">{Array(e[1]*1).fill("").map((x,i)=><span key={i} className="fa fa-star star-checked" />)}</div>
-                                <br/><br/>
+                                <div className="star-card" title="Rating based on our website's users">{Array(e[1] * 1).fill("").map((x, i) => <span key={i} className="fa fa-star star-checked" />)}</div>
+                                <br /><br />
                                 <h2>{e[0]}</h2>
                                 <h4>{e[1]}</h4>
                                 <p>{e[3]}</p>
-
                             </div>
                         </div>
                     )}
-    
+
                 </div>
             </div>
-        )}else
-        if (props.user ===""){
+        )
+    } else
+        if (props.user.adminUser === "admin") {
             return (
                 <div id="list-container">
                     <div id="list">
-                        {props.array.map((e,i) =>
+                        {props.array.map((e, i) =>
                             <div key={i} className="card-container" style={{ backgroundImage: "url(" + e[2] + ")" }}>
                                 <div className="card">
-                                    <div className="star-card" title="Rating based on our website's users">{Array(e[1]*1).fill("").map((x,i)=><span key={i} className="fa fa-star star-checked" />)}</div>
-                                    <br/><br/>
+                                    <span onClick={() => props.addFav(e)} className="fa fa-heart heart-checked " title="Add to favourit" />
+                                    <div className="star-card" title="Rating based on our website's users">{Array(e[1] * 1).fill("").map((x, i) => <span key={i} className="fa fa-star star-checked" />)}</div>
+                                    <br /><br />
                                     <h2>{e[0]}</h2>
                                     <h4>{e[1]}</h4>
                                     <p>{e[3]}</p>
+                                    <NavLink to={{ pathname: `/edit/${i}` }}><span className="fa fa-cog cog-checked " title="Edit the movie" /></NavLink>
                                 </div>
                             </div>
                         )}
-        
+
                     </div>
                 </div>
-            )}
+            )
+        } else
+            if (props.user.adminUser === "user") {
+                return (
+                    <div id="list-container">
+                        <div id="list">
+                            {props.array.map((e, i) =>
+                                <div key={i} className="card-container" style={{ backgroundImage: "url(" + e[2] + ")" }}>
+                                    <div className="card">
+                                        <span onClick={() => props.addFav(e)} className="fa fa-heart heart-checked " title="Add to favourit" />
+                                        <div className="star-card" title="Rating based on our website's users">{Array(e[1] * 1).fill("").map((x, i) => <span key={i} className="fa fa-star star-checked" />)}</div>
+                                        <br /><br />
+                                        <h2>{e[0]}</h2>
+                                        <h4>{e[1]}</h4>
+                                        <p>{e[3]}</p>
+
+                                    </div>
+                                </div>
+                            )}
+
+                        </div>
+                    </div>
+                )
+            }
 }
 
 export default MovieList;

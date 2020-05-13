@@ -23,17 +23,16 @@ class App extends Component {
     /* user management */
     getUser = (u) => {
         this.setState({ user: u });
-        this.setState({ movieList: [...this.state.movieList] });
         console.log("Current user :", u);
 
     }
+    /* user fav add */
     addFav = (e) => {
         window[this.state.user.email].fav = [...window[this.state.user.email].fav, e]
-        console.log("new added item : ", e, "  new user fav list is : ", this.state.user.fav)
         this.getUser(window[this.state.user.email]);
     }
 
-    /*  */
+    /* search management */
 
     getKeyword = (k) => {
         this.setState({ keyword: k });
@@ -44,14 +43,12 @@ class App extends Component {
     filtered = (m, k, r) => {
         let patt = new RegExp(k, 'gi');
         let rate = r;
-        console.log("keyword rate : ", k, "filter rate : ", r);
         return m.filter((e) => e[0].match(patt) && e[1] * 1 >= rate);
     };
 
+    /* movie management */
     addMovie = (x) => {
         if (x[1] > 5) { x[1] = 5 } else if (x[1] < 1) { x[1] = 1 };
-        console.log("new list item in app : ", x);
-
         this.setState({ movieList: [...this.state.movieList, x] });
     }
     deleteMovie = (i) => {
@@ -60,16 +57,15 @@ class App extends Component {
         this.setState({ movieList: [...y] });
     }
     updateMovie = (movie, i) => {
+        if (movie[1] > 5) { movie[1] = 5 } else if (movie[1] < 1) { movie[1] = 1 };
         let y = [...this.state.movieList];
-        console.log(y);
-
         y.splice(i, 1, movie);
         this.setState({ movieList: [...y] });
     }
 
 
     render() {
-        console.log("this.state.user : ", this.state.user === "");
+        console.log("this.state.user : ", this.state.user);
 
         let ButtonAdder;
         let ButtonFav;

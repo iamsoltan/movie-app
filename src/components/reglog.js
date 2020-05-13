@@ -117,7 +117,7 @@ function Reglog(props) {
         let emaillogin = document.getElementById("emailLogin").value;
         let passwordlogin = document.getElementById("passwordLogin").value;
 
-        if ((users.includes(emaillogin) == true) && lastUser == "not") {
+        if ((window[emaillogin]) && lastUser == "not") {
             if (window[emaillogin].password == passwordlogin) {
                 window[emaillogin].login();
                 lastUser = "still";
@@ -130,8 +130,9 @@ function Reglog(props) {
                 alert("Congrats !,you are succussfully logged in !");
                 NAME = window[emaillogin].email;
 
-                console.log("window[emaillogin].email : ", NAME, logoutbtn.innerHTML = "hhh");
                 logoutbtn.innerHTML = "Logout from  " + NAME;
+
+
                 props.getUser(window[emaillogin]);
 
             } else {
@@ -140,7 +141,7 @@ function Reglog(props) {
         } else {
             alert("whether wrong Email or not registred , register first please !")
         }
-        
+
     }
 
     /*------------------------------Register function--------------------------------------------- */
@@ -165,6 +166,9 @@ function Reglog(props) {
 
                     alert("succussfull registration !  you may now log in !")
                     closeFormRegister();
+
+                    console.log("users : ", users);
+
                 }
             }
         }
@@ -175,6 +179,8 @@ function Reglog(props) {
 
 
     function logout() {
+        console.log("usersObjects 1 : ", usersObjects);
+
         lastUser = "not";
         hide(reglogform);
         hide(regform);
@@ -182,7 +188,11 @@ function Reglog(props) {
         hide(logoutbtn);
         show(regbtn);
         show(logbtn);
+        console.log("usersObjects 2 : ", usersObjects);
+
         props.getUser("");
+        console.log("usersObjects 3 : ", usersObjects);
+
     }
 
     /*--------------------------------control Email with regex------------------------------------------- */
@@ -259,7 +269,7 @@ function Reglog(props) {
                     </form>
                 </div>
             </div>
-            
+
         </React.Fragment>
     );
 };
