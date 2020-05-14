@@ -23,13 +23,20 @@ class App extends Component {
     /* user management */
     getUser = (u) => {
         this.setState({ user: u });
-        console.log("Current user :", u);
 
     }
     /* user fav add */
     addFav = (e) => {
-        window[this.state.user.email].fav = [...window[this.state.user.email].fav, e]
-        this.getUser(window[this.state.user.email]);
+        if ((window[this.state.user.email].fav).includes(this.state.movieList.indexOf(e)) === false) {
+            window[this.state.user.email].fav = [...window[this.state.user.email].fav, this.state.movieList.indexOf(e)];
+            this.getUser(window[this.state.user.email]);
+        }
+    }
+    /* return fav array if there is a logged user */
+    getFav = () => {
+        if (this.state.user != "") {
+            return this.state.movieList.filter((e, i) => ((e.length < 4) || (this.state.user.fav).includes(i)));
+        }
     }
 
     /* search management */
@@ -43,8 +50,13 @@ class App extends Component {
     filtered = (m, k, r) => {
         let patt = new RegExp(k, 'gi');
         let rate = r;
-        return m.filter((e) => e[0].match(patt) && e[1] * 1 >= rate);
+        return m.filter((e) => (e.length < 4) || (e[0].match(patt) && e[1] * 1 >= rate));
     };
+
+
+
+
+
 
     /* movie management */
     addMovie = (x) => {
@@ -53,8 +65,10 @@ class App extends Component {
     }
     deleteMovie = (i) => {
         let y = [...this.state.movieList];
-        y.splice(i, 1);
+        y[i] = [""];
         this.setState({ movieList: [...y] });
+        console.log("y[", i, " ] : ", y[i]);
+        console.log("y : ", y);
     }
     updateMovie = (movie, i) => {
         if (movie[1] > 5) { movie[1] = 5 } else if (movie[1] < 1) { movie[1] = 1 };
@@ -65,7 +79,6 @@ class App extends Component {
 
 
     render() {
-        console.log("this.state.user : ", this.state.user);
 
         let ButtonAdder;
         let ButtonFav;
@@ -83,7 +96,7 @@ class App extends Component {
 
                     <Switch>
                         <Route path="/" exact component={() => <MovieList user={this.state.user} addFav={this.addFav} array={this.filtered(this.state.movieList, this.state.keyword, this.state.rate)} />} />
-                        <Route path="/Favorite" component={() => <MovieList user={this.state.user} array={this.filtered(this.state.user.fav, this.state.keyword, this.state.rate)} />} />
+                        <Route path="/Favorite" component={() => <MovieList user={this.state.user} array={this.filtered(this.getFav(), this.state.keyword, this.state.rate)} />} />
                         <Route path="/add" component={() => <Editor addMovie={this.addMovie} mode="add" />} />
                         <Route path="/edit/:iDelete" component={() => <Editor e={this.state.movieList} updateMovie={this.updateMovie} deleteMovie={this.deleteMovie} mode="edit" />} />
                     </Switch>

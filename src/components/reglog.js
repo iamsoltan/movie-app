@@ -167,7 +167,7 @@ function Reglog(props) {
                     alert("succussfull registration !  you may now log in !")
                     closeFormRegister();
 
-                    console.log("users : ", users);
+
 
                 }
             }

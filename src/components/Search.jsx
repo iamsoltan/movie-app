@@ -5,7 +5,13 @@ const Search = (props) => {
     const rate = (e) => {
         let checked = "fa fa-star star-checked";
         let empty = "fa fa-star";
+        //My Solution to convert html5Collection into an array :
+        let spansIntoNewTable = [...e.target.parentNode.children];
+        let index = spansIntoNewTable.indexOf(e.target);
+        /* complicated solution ** .call replace the "this" keyword of "Array.prototype" to the first arg called "e.target.parentNode.children" , then the second element will be the arg of the function before .call "indexOf" :
+
         let index = Array.prototype.indexOf.call(e.target.parentNode.children, e.target);
+        */
         
         for (let k = index; k < 5; k++) {
             e.target.parentNode.children[k].className = checked;
