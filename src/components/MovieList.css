@@ -26,12 +26,12 @@
   width: 290px;
   height: 300px;
   overflow: hidden;
-  background: rgba(0, 0, 0, .7);
+  background: rgba(0, 0, 0, 0.7);
   position: relative;
 }
 
 .card p {
-  padding : 5px;
+  padding: 5px;
   /*display: block;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -45,7 +45,6 @@
   left: 0px;
   top: 0px;
   cursor: pointer;
-  
 }
 
 .star-checked {
@@ -60,6 +59,10 @@
   cursor: pointer;
   font-size: 25px;
 }
+.fa-heart:hover {
+
+  font-size: 35px;
+}
 
 .heart-checked {
   color: red;
@@ -73,7 +76,25 @@
   cursor: pointer;
   font-size: 25px;
 }
-
+.fa-cog:hover {
+  color: #007bff;
+  font-size: 35px;
+}
 .cog-checked {
   color: white;
+}
+
+.fa-eye {
+  color: white;
+  padding: 10px;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.fa-eye:hover {
+  color: rgb(49, 189, 36);
+  font-size: 35px;
 }

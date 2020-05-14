@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import MovieList from "./components/MovieList"
-import NavBar from "./components/NavBar"
-import Editor from "./components/Editor"
+import MovieList from "./components/MovieList";
+import NavBar from "./components/NavBar";
+import Editor from "./components/Editor";
+import Shower from "./components/Shower";
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 
 class App extends Component {
@@ -10,9 +11,10 @@ class App extends Component {
         super(props);
         this.state = {
             movieList: [
-                ["Behind Enemy Lines", "5", "https://resizing.flixster.com/rr-PoYj5Jk4QBmQu75ZgrWFzqV8=/206x305/v1.bTsxMTE3Njc3MztqOzE4NDg5OzEyMDA7ODAwOzEyMDA", "Behind Enemy Lines is a series of war films beginning with Behind Enemy Lines in 2001, followed by films in 2006, 2009 and 2014. All four films feature the United States Navy."],
-                ["Black Hawk Down", "4", "https://images-na.ssl-images-amazon.com/images/I/81+PAHSNsgL._RI_.jpg", "Captain Mike Steele leads a team of nearly 100 US Army Rangers who travel to the capital city of Mogadishu to nab the top two lieutenants of a Somali warlord."],
-                ["The Transporter", "3", "https://i.pinimg.com/originals/27/2d/64/272d640a0166155f7b23485011da16b9.jpg", "Ex-Special Forces operator Frank Martin (Jason Statham) lives what seems to be a quiet life along the French Mediterranean, hiring himself out as a mercenary transporter who moves goods - human or otherwise - from one place to another."]
+                ["Behind Enemy Lines", "5", "https://resizing.flixster.com/rr-PoYj5Jk4QBmQu75ZgrWFzqV8=/206x305/v1.bTsxMTE3Njc3MztqOzE4NDg5OzEyMDA7ODAwOzEyMDA", "Behind Enemy Lines is a series of war films beginning with Behind Enemy Lines in 2001, followed by films in 2006, 2009 and 2014. All four films feature the United States Navy.","https://www.youtube.com/embed/PUeWBp_kmuo"],
+                ["Black Hawk Down", "4", "https://images-na.ssl-images-amazon.com/images/I/81+PAHSNsgL._RI_.jpg", "Captain Mike Steele leads a team of nearly 100 US Army Rangers who travel to the capital city of Mogadishu to nab the top two lieutenants of a Somali warlord.","https://www.youtube.com/embed/5Y1ju8QwpQM"],
+                ["The Transporter", "3", "https://i.pinimg.com/originals/27/2d/64/272d640a0166155f7b23485011da16b9.jpg", "Ex-Special Forces operator Frank Martin (Jason Statham) lives what seems to be a quiet life along the French Mediterranean, hiring himself out as a mercenary transporter who moves goods - human or otherwise - from one place to another.","https://www.youtube.com/embed/Pbh3CDBNIQA"],
+                ["The Patriot", "4", "https://mindthecrease.com/wp-content/uploads/2012/04/patriot-movie-mel-gibson.jpg", "The Patriot is a 2000 American epic historical fiction war film directed by Roland Emmerich, written by Robert Rodat, and starring Mel Gibson, Chris Cooper, Heath Ledger, and Jason.","https://www.youtube.com/embed/P5u1am7pmrw"]
             ],
             rate: 1,
             keyword: "",
@@ -45,8 +47,7 @@ class App extends Component {
             console.log("position du nemero dans z",window[this.state.user.email].fav.indexOf(index));
             
             z.splice(pos,1);
-            //let z = window[this.state.user.email].fav.splice(window[this.state.user.email].fav.indexOf(index),1);
-            //let z = window[this.state.user.email].fav.filter(e => (e != this.state.movieList.indexOf(e) ));
+
             console.log("z : ",z);
             
             window[this.state.user.email].fav = [...z];
@@ -60,6 +61,10 @@ class App extends Component {
     /* return fav array from user.fav if there is a logged user */
     getFav = () => {
         if (this.state.user != "") {
+            console.log("new fav list : ",this.state.movieList.filter((e, i) => ((e.length < 4) || (this.state.user.fav).includes(i))));
+            console.log("original movie list : ",this.state.movieList);
+            
+            
             return this.state.movieList.filter((e, i) => ((e.length < 4) || (this.state.user.fav).includes(i)));
         }
     }
@@ -79,8 +84,8 @@ class App extends Component {
         
         if (this.state.user != "") {
             for (let i = 0; i < X.length; i++) {
-                if ((X[i].length > 1) && (window[this.state.user.email].fav).includes(i) == true) { X[i][4] = "fa fa-heart heart-checked " }
-                else if ((X[i].length > 1) && (window[this.state.user.email].fav).includes(i) == false) { X[i][4] = "fa fa-heart" }
+                if ((X[i].length > 1) && (window[this.state.user.email].fav).includes(i) == true) { X[i][5] = "fa fa-heart heart-checked " }
+                else if ((X[i].length > 1) && (window[this.state.user.email].fav).includes(i) == false) { X[i][5] = "fa fa-heart" }
 
             }
         }
@@ -101,8 +106,6 @@ class App extends Component {
         let y = [...this.state.movieList];
         y[i] = [""];
         this.setState({ movieList: [...y] });
-        console.log("y[", i, " ] : ", y[i]);
-        console.log("y : ", y);
     }
     updateMovie = (movie, i) => {
         if (movie[1] > 5) { movie[1] = 5 } else if (movie[1] < 1) { movie[1] = 1 };
@@ -133,6 +136,7 @@ class App extends Component {
                         <Route path="/Favorite" component={() => <MovieList user={this.state.user} addFav={this.addFav} array={this.filtered(this.getFav(), this.state.keyword, this.state.rate)} />} />
                         <Route path="/add" component={() => <Editor addMovie={this.addMovie} mode="add" />} />
                         <Route path="/edit/:iDelete" component={() => <Editor e={this.state.movieList} updateMovie={this.updateMovie} deleteMovie={this.deleteMovie} mode="edit" />} />
+                        <Route path="/show/:Smovie" component={() => <Shower e={this.state.movieList} />} />
                     </Switch>
 
                 </div>
@@ -145,16 +149,3 @@ class App extends Component {
 export default App;
 
 
-
-{/* <Editor e={this.state.movieList[0]} submitList={this.submitList} deleteList={this.deleteList} />
-                      <Route path="/" component={} />
-          */}
-
-
-/*
- * rise this data with events "or with data on change (state)"
- * reglog --> app:
- * user object
- * read and write mode
- *                    <NavLink to="/Favorite"><button className="add-movie">Favorite Movies</button></NavLink>
- */

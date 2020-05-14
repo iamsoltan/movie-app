@@ -1,0 +1,104 @@
+#show-container {
+    width: 100%;
+    background-color: darkgrey;
+    display: flex;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover  ;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #show {
+    max-width: 950px;
+    min-height: 500px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-show-container {
+    margin: 10px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .card-show {
+    color: white;
+    width: 290px;
+    height: 300px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.7);
+    position: relative;
+  }
+  
+  .card-show p {
+    padding: 5px;
+    /*display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    overflow: hidden;*/
+  }
+  
+  .star-card {
+    padding: 10px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    cursor: pointer;
+  }
+  
+  .star-checked {
+    color: orange;
+  }
+  
+  .fa-heart {
+    padding: 10px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+    font-size: 25px;
+  }
+  .fa-heart:hover {
+  
+    font-size: 35px;
+  }
+  
+  .heart-checked {
+    color: red;
+  }
+  
+  .fa-cog {
+    padding: 10px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    cursor: pointer;
+    font-size: 25px;
+  }
+  .fa-cog:hover {
+    color: #007bff;
+    font-size: 35px;
+  }
+  .cog-checked {
+    color: white;
+  }
+  
+  .fa-eye {
+    color: white;
+    padding: 10px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    cursor: pointer;
+    font-size: 25px;
+  }
+  
+  .fa-eye:hover {
+    color: rgb(49, 189, 36);
+    font-size: 35px;
+  }
+  
