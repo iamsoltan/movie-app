@@ -27,12 +27,37 @@ class App extends Component {
     }
     /* user fav add */
     addFav = (e) => {
-        if ((window[this.state.user.email].fav).includes(this.state.movieList.indexOf(e)) === false) {
+        
+        if (window[this.state.user.email].fav.includes(this.state.movieList.indexOf(e)) == false) {
+
             window[this.state.user.email].fav = [...window[this.state.user.email].fav, this.state.movieList.indexOf(e)];
-            this.getUser(window[this.state.user.email]);
+            console.log("fav list : ", window[this.state.user.email].fav);
+            console.log("fav item : ", this.state.movieList.indexOf(e));
+
+            this.setState({ user : window[this.state.user.email] });
+
+
+        } else if (window[this.state.user.email].fav.includes(this.state.movieList.indexOf(e)) == true) {
+            let index = this.state.movieList.indexOf(e);
+            let pos = window[this.state.user.email].fav.indexOf(index);
+            let z = window[this.state.user.email].fav;
+            console.log("to numero a del ; ",this.state.movieList.indexOf(e));
+            console.log("position du nemero dans z",window[this.state.user.email].fav.indexOf(index));
+            
+            z.splice(pos,1);
+            //let z = window[this.state.user.email].fav.splice(window[this.state.user.email].fav.indexOf(index),1);
+            //let z = window[this.state.user.email].fav.filter(e => (e != this.state.movieList.indexOf(e) ));
+            console.log("z : ",z);
+            
+            window[this.state.user.email].fav = [...z];
+
+
+            this.setState({ user : window[this.state.user.email] });
         }
+
     }
-    /* return fav array if there is a logged user */
+
+    /* return fav array from user.fav if there is a logged user */
     getFav = () => {
         if (this.state.user != "") {
             return this.state.movieList.filter((e, i) => ((e.length < 4) || (this.state.user.fav).includes(i)));
@@ -50,8 +75,17 @@ class App extends Component {
     filtered = (m, k, r) => {
         let patt = new RegExp(k, 'gi');
         let rate = r;
-        return m.filter((e) => (e.length < 4) || (e[0].match(patt) && e[1] * 1 >= rate));
-    };
+        let X = m.filter((e) => (e.length < 4) || (e[0].match(patt) && e[1] * 1 >= rate));
+        
+        if (this.state.user != "") {
+            for (let i = 0; i < X.length; i++) {
+                if ((X[i].length > 1) && (window[this.state.user.email].fav).includes(i) == true) { X[i][4] = "fa fa-heart heart-checked " }
+                else if ((X[i].length > 1) && (window[this.state.user.email].fav).includes(i) == false) { X[i][4] = "fa fa-heart" }
+
+            }
+        }
+        return X;
+    }
 
 
 
@@ -96,7 +130,7 @@ class App extends Component {
 
                     <Switch>
                         <Route path="/" exact component={() => <MovieList user={this.state.user} addFav={this.addFav} array={this.filtered(this.state.movieList, this.state.keyword, this.state.rate)} />} />
-                        <Route path="/Favorite" component={() => <MovieList user={this.state.user} array={this.filtered(this.getFav(), this.state.keyword, this.state.rate)} />} />
+                        <Route path="/Favorite" component={() => <MovieList user={this.state.user} addFav={this.addFav} array={this.filtered(this.getFav(), this.state.keyword, this.state.rate)} />} />
                         <Route path="/add" component={() => <Editor addMovie={this.addMovie} mode="add" />} />
                         <Route path="/edit/:iDelete" component={() => <Editor e={this.state.movieList} updateMovie={this.updateMovie} deleteMovie={this.deleteMovie} mode="edit" />} />
                     </Switch>
