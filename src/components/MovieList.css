@@ -1,6 +1,7 @@
 #list-container {
   width: 100%;
-  background-color: darkgrey;
+  min-height: 600px;
+  background-color: rgb(17, 16, 16);
   display: flex;
 
   justify-content: center;
@@ -46,12 +47,16 @@
   top: 0px;
   cursor: pointer;
 }
+.fa-star {
+  color: white;
+}
 
 .star-checked {
   color: orange;
 }
 
 .fa-heart {
+
   padding: 10px;
   position: absolute;
   right: 0px;

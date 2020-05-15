@@ -1,4 +1,5 @@
 .navBar-container{
+    background-color: rgb(17, 16, 16);
     display: flex;
     flex-flow: row wrap;
     justify-content: center;

@@ -31,7 +31,9 @@
 .add-movie:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
-
+.app-sub-nav{
+  background-color: gold;
+}
 /*
 body{
   background-image: url(./components/film-reel-movies-wallpaper-preview.jpg);
