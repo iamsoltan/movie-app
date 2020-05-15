@@ -6,7 +6,7 @@ function Shower(props) {
   let { Smovie } = useParams();
   let { e } = props;
   return (
-    <div id="show-container" style={{ backgroundImage: "url(" + e[Smovie][2] + ")" }}>
+    <div id="show-container" /*style={{ backgroundImage: "url(" + e[Smovie][2] + ")" }}*/ >
       <div id="show">
         <div className="card-show-container"
           style={{ backgroundImage: "url(" + e[Smovie][2] + ")" }}

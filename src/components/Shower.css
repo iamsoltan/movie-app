@@ -1,104 +1,110 @@
 #show-container {
-    width: 100%;
-    background-color: darkgrey;
-    display: flex;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover  ;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #show {
-    max-width: 950px;
-    min-height: 500px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .card-show-container {
-    margin: 10px;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .card-show {
-    color: white;
-    width: 290px;
-    height: 300px;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.7);
-    position: relative;
-  }
-  
-  .card-show p {
-    padding: 5px;
-    /*display: block;
+  width: 100%;
+
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)),
+    url("https://lh5.googleusercontent.com/proxy/xvtq6_782kBajCBr0GISHpujOb51XLKUeEOJ2lLPKh12-xNBTCtsoHT14NQcaH9l4JhatcXEMBkqgUeCWhb3XhdLnD1BiNzQ_LVydwg=w3840-h2160-p-k-no-nd-mv");
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 550px;
+
+  /*  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#show {
+  max-width: 950px;
+  min-height: 500px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-show-container {
+  margin: 10px;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-show {
+  color: white;
+  width: 290px;
+  height: 300px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+.card-show p {
+  padding: 5px;
+  /*display: block;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 7;
     overflow: hidden;*/
-  }
-  
-  .star-card {
-    padding: 10px;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    cursor: pointer;
-  }
-  
-  .star-checked {
-    color: orange;
-  }
-  
-  .fa-heart {
-    padding: 10px;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    cursor: pointer;
-    font-size: 25px;
-  }
-  .fa-heart:hover {
-  
-    font-size: 35px;
-  }
-  
-  .heart-checked {
-    color: red;
-  }
-  
-  .fa-cog {
-    padding: 10px;
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    cursor: pointer;
-    font-size: 25px;
-  }
-  .fa-cog:hover {
-    color: #007bff;
-    font-size: 35px;
-  }
-  .cog-checked {
-    color: white;
-  }
-  
-  .fa-eye {
-    color: white;
-    padding: 10px;
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    cursor: pointer;
-    font-size: 25px;
-  }
-  
-  .fa-eye:hover {
-    color: rgb(49, 189, 36);
-    font-size: 35px;
-  }
-  
+}
+
+.star-card {
+  padding: 10px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  cursor: pointer;
+}
+
+.star-checked {
+  color: orange;
+}
+
+.fa-heart {
+  padding: 10px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  cursor: pointer;
+  font-size: 25px;
+}
+.fa-heart:hover {
+  font-size: 35px;
+}
+
+.heart-checked {
+  color: red;
+}
+
+.fa-cog {
+  padding: 10px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  cursor: pointer;
+  font-size: 25px;
+}
+.fa-cog:hover {
+  color: #007bff;
+  font-size: 35px;
+}
+.cog-checked {
+  color: white;
+}
+
+.fa-eye {
+  color: white;
+  padding: 10px;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.fa-eye:hover {
+  color: rgb(49, 189, 36);
+  font-size: 35px;
+}
