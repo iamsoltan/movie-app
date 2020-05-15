@@ -70,8 +70,19 @@ class App extends Component {
             console.log("new fav list : ", this.state.movieList.filter((e, i) => ((e.length < 4) || (this.state.user.fav).includes(i))));
             console.log("original movie list : ", this.state.movieList);
 
+            //new method to preserve order
+            let favDiDi = this.state.movieList.map((e, i) => {
+                if ((e.length < 4) || (this.state.user.fav).includes(i)) {
 
-            return this.state.movieList.filter((e, i) => ((e.length < 4) || (this.state.user.fav).includes(i)));
+                    return e;
+                } else { return e = [""] }
+            });
+            console.log("favdidi : ", favDiDi);
+
+
+            return favDiDi;
+            //version obsolete, it doesnt preserve movielist order
+            //return this.state.movieList.filter((e, i) => ((e.length < 4) || (this.state.user.fav).includes(i)));
         }
     }
 
