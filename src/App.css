@@ -31,7 +31,11 @@
 .add-movie:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
+
 .app-sub-nav{
+  background-color: gold;
+}
+.app-sub-nav button:active{
   background-color: gold;
 }
 /*
