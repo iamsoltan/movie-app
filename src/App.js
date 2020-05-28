@@ -4,6 +4,7 @@ import MovieList from "./components/MovieList";
 import NavBar from "./components/NavBar";
 import Editor from "./components/Editor";
 import Shower from "./components/Shower";
+import Loader from "./components/Loader";
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
             rate: 1,
             keyword: "",
             user: "",
+            isLoading: true,
         }
     };
 
@@ -100,12 +102,12 @@ class App extends Component {
         //new method to preserve order
         let DiDi = m.map(e => {
             if ((e.length < 4) || (e[0].match(patt) && e[1] * 1 >= rate)) {
-                console.log("e : ", e);
+                //console.log("e : ", e);
 
                 return e;
             } else { return e = [""] }
         });
-        console.log("didi : ", DiDi);
+        //console.log("didi : ", DiDi);
 
         let X = DiDi;
         //version obsolete : it doesnt preserve movie liost orders (it produce new array without unmatched items)
@@ -143,6 +145,12 @@ class App extends Component {
         this.setState({ movieList: [...y] });
     }
 
+    /* loader M */
+    loaded = (x) => {
+        if (x === true && this.state.isLoading === true) {this.setState({ isLoading: false });
+        console.log("LOADED !!!");
+    }
+    }
 
     render() {
 
@@ -161,7 +169,9 @@ class App extends Component {
                         {ButtonFav}
                     </div>
                     <Switch>
-                        <Route path="/" exact component={() => <MovieList user={this.state.user} addFav={this.addFav} array={this.filtered(this.state.movieList, this.state.keyword, this.state.rate)} />} />
+                        {/*<Route path="/" exact component={() => <MovieList user={this.state.user} addFav={this.addFav} array={this.filtered(this.state.movieList, this.state.keyword, this.state.rate)} />} />
+                        */}
+                        <Route path="/" exact component={() => <Loader loaded={this.loaded} isLoading={this.state.isLoading} compo={<MovieList loaded={this.loaded} user={this.state.user} addFav={this.addFav} array={this.filtered(this.state.movieList, this.state.keyword, this.state.rate)} />}/>} />
                         <Route path="/Favorite" component={() => <MovieList user={this.state.user} addFav={this.addFav} array={this.filtered(this.getFav(), this.state.keyword, this.state.rate)} />} />
                         <Route path="/add" component={() => <Editor addMovie={this.addMovie} mode="add" />} />
                         <Route path="/edit/:iDelete" component={() => <Editor e={this.state.movieList} updateMovie={this.updateMovie} deleteMovie={this.deleteMovie} mode="edit" />} />
